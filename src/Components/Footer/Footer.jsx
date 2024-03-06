@@ -79,7 +79,7 @@ function Footer() {
           </div>
           <div className="text-lg">
             <h3 className="text-2xl font-semibold mb-2">Follow Us</h3>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-5">
               <a
                 href="https://www.facebook.com/Hamim.webDevloper"
                 className="text-white hover:text-gray-400"

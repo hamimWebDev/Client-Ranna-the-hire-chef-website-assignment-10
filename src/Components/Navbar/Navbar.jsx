@@ -22,36 +22,36 @@ function Navbar() {
         <div className="hidden md:block italic">
           <ul className="flex space-x-4">
             <li>
-              <a
-                href="#"
+              <Link
+                 to="/"
                 className="text-white text-3xl font-semibold hover:text-blue-500"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                 to="/recipes"
                 className="text-white text-3xl font-semibold hover:text-blue-500"
               >
-                About
-              </a>
+                Recipes
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                 
                 className="text-white text-3xl font-semibold hover:text-blue-500"
               >
                 Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                 
                 className="text-white text-3xl font-semibold hover:text-blue-500"
               >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

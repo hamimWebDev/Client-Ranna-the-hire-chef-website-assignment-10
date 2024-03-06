@@ -10,7 +10,6 @@ const HomeRoot = () => {
       <Navbar></Navbar>
       <Outlet></Outlet>
       <div className="pt-20">
-        <Home></Home>
         <Footer></Footer>
       </div>
     </div>
