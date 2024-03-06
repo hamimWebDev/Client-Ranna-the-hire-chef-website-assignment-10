@@ -1,5 +1,6 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Chef = ({ chef }) => {
   const { id, Chef_Name, Chef_Picture, Years_experience, Likes } = chef;
@@ -23,9 +24,11 @@ const Chef = ({ chef }) => {
             {Likes} Likes
           </p>
           <div className="card-actions justify-end">
-            <button className="btn bg-red-600 text-xl items-center">
-              View Recipes <FaArrowRight />
-            </button>
+            <Link to={`/chef/${id}`}>
+              <button className="btn bg-red-600 text-xl items-center">
+                View Recipes <FaArrowRight />
+              </button>
+            </Link>
           </div>
         </div>
       </div>

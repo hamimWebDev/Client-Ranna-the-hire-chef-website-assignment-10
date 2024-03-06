@@ -2,10 +2,10 @@ import React from "react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-const AllRecipe = ({ recipe }) => {
+const Recipe = ({ chef, recipe }) => {
   const { id, image_url, title, ingredients, instructions } = recipe;
   return (
-    <div>
+    <div className="mt-5">
       <div className="card w-full h-[95%] bg-stone-800 shadow-xl">
         <figure>
           <img
@@ -43,7 +43,9 @@ const AllRecipe = ({ recipe }) => {
               />
               <h4>4.5</h4>
             </div>
-            <button className="btn btn-primary font-semibold lg:text-lg ml-3">ADD TO FAVORITE</button>
+            <button className="btn btn-primary font-semibold lg:text-lg ml-3">
+              ADD TO FAVORITE
+            </button>
           </div>
         </div>
       </div>
@@ -51,4 +53,4 @@ const AllRecipe = ({ recipe }) => {
   );
 };
 
-export default AllRecipe;
+export default Recipe;
