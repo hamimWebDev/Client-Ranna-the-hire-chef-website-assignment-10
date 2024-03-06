@@ -7,6 +7,7 @@ import Home from "./Components/Home/Home";
 import Chef from "./Components/Chef/Chef";
 import CountryLayout from "./Layout/country/CountryLayout";
 import AllChef from "./Components/All_Chef/AllChef";
+import AllRecipes from "./Components/Recipes/AllRecipes";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
               ),
           },
         ],
+      },
+      {
+        path: "/recipes",
+        element: <AllRecipes></AllRecipes>,
+        loader: () => fetch("https://server-ranna-the-hire-chef-website-assignment-10.vercel.app/recipes")
       },
       {
         path: "country",

@@ -15,7 +15,10 @@ function Navbar() {
             }
             alt=""
           />
-          <a href="#" className="text-orange-400 text-2xl lg:text-3xl font-bold italic">
+          <a
+            href="#"
+            className="text-orange-400 text-2xl lg:text-3xl font-bold italic"
+          >
             Ranna
           </a>
         </div>
@@ -23,34 +26,26 @@ function Navbar() {
           <ul className="flex space-x-4">
             <li>
               <Link
-                 to="/"
-                className="text-white text-3xl font-semibold hover:text-blue-500"
+                to="/"
+                className="text-white mr-5 text-3xl font-semibold hover:text-blue-500"
               >
                 Home
               </Link>
             </li>
             <li>
               <Link
-                 to="/recipes"
-                className="text-white text-3xl font-semibold hover:text-blue-500"
+                to="/recipes"
+                className="text-white mr-5 text-3xl font-semibold hover:text-blue-500"
               >
-                Recipes
+                All Recipes
               </Link>
             </li>
             <li>
               <Link
-                 
-                className="text-white text-3xl font-semibold hover:text-blue-500"
+                to="/about"
+                className="text-white mr-5 text-3xl font-semibold hover:text-blue-500"
               >
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link
-                 
-                className="text-white text-3xl font-semibold hover:text-blue-500"
-              >
-                Contact
+                About
               </Link>
             </li>
           </ul>
@@ -98,23 +93,24 @@ function Navbar() {
         <div className="lg:hidden flex justify-between items-end mt-5">
           <ul className="flex flex-col space-y-2">
             <li>
-              <Link className="text-white text-xl hover:text-blue-500">
+              <Link to="/" className="text-white text-xl hover:text-blue-500">
                 Home
               </Link>
             </li>
             <li>
-              <Link className="text-white text-xl hover:text-blue-500">
+              <Link
+                to="/recipes"
+                className="text-white text-xl hover:text-blue-500"
+              >
+                Recipes
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="text-white text-xl hover:text-blue-500"
+              >
                 About
-              </Link>
-            </li>
-            <li>
-              <Link className="text-white text-xl hover:text-blue-500">
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link className="text-white text-xl hover:text-blue-500">
-                Contact
               </Link>
             </li>
           </ul>
