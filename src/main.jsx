@@ -37,7 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/recipes",
         element: <AllRecipes></AllRecipes>,
-        loader: () => fetch("https://server-ranna-the-hire-chef-website-assignment-10.vercel.app/recipes")
+        loader: () =>
+          fetch(
+            "https://server-ranna-the-hire-chef-website-assignment-10.vercel.app/recipes"
+          ),
       },
       {
         path: "country",

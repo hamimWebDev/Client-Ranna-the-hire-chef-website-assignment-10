@@ -18,8 +18,8 @@ const ChefLayout = () => {
           </h1>
           <p className="mt-5 text-xl font-medium text-blue-500">
             {Years_experience} years of experience in the culinary arts. He
-            specializes cuisine, particularly dishes. His
-            restaurant is known for its mouthwatering kebabs and biryanis.
+            specializes cuisine, particularly dishes. His restaurant is known
+            for its mouthwatering kebabs and biryanis.
           </p>
           <h4 className="mt-5 text-xl font-medium text-red-500">
             Years of experience: {Years_experience}

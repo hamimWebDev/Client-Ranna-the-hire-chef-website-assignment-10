@@ -7,7 +7,7 @@ const AllRecipe = ({ recipe }) => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const addToFavorite = () => {
     alert("Add Successfully");
-    setButtonDisabled(true); 
+    setButtonDisabled(true);
   };
 
   return (
