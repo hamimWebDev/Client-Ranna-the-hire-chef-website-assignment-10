@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
 const AllRecipe = ({ recipe }) => {
   const { id, image_url, title, ingredients, instructions } = recipe;
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const addToFavorite = () => {
+    alert("Add Successfully");
+    setButtonDisabled(true); 
+  };
+
   return (
     <div>
       <div className="card w-full h-[95%] bg-stone-800 shadow-xl">
         <figure>
           <img
-            src={`https://img.freepik.com/free-photo/spaghetti-with-vegetablesbroccolitomatoespeppers-black-background_123827-21308.jpg?t=st=1709526736~exp=1709530336~hmac=c40c9da24604db020425dd61628c89777b60db21c12d8512878e29d8859f2839&w=996`}
+            src={`https://img.freepik.com/free-photo/italian-pasta-spaghetti-with-meatballs-parmesan-cheese-black-plate-dark-rustic-wood-background-dinner-slow-food-concept_2829-4639.jpg?t=st=1709798774~exp=1709802374~hmac=9ae006ee0d506ae304c36156916fd8be9c3c3b4ee99902fe5e0987f298bce35b&w=900`}
             alt="Shoes"
           />
         </figure>
@@ -20,7 +26,7 @@ const AllRecipe = ({ recipe }) => {
           </h1>
           <div className="grid grid-cols-2 gap-2 items-center">
             {ingredients.map((ingredient) => (
-              <p className="bg-red-500 text-sm text-white p-1 rounded-xl font-semibold ">
+              <p className="bg-red-500 text-sm text-white p-1 rounded-xl font-semibold">
                 {ingredient}
               </p>
             ))}
@@ -43,7 +49,13 @@ const AllRecipe = ({ recipe }) => {
               />
               <h4>4.5</h4>
             </div>
-            <button className="btn btn-primary font-semibold lg:text-lg ml-3">ADD TO FAVORITE</button>
+            <button
+              onClick={addToFavorite}
+              disabled={buttonDisabled}
+              className="btn btn-primary font-semibold lg:text-lg ml-3"
+            >
+              ADD TO FAVORITE
+            </button>
           </div>
         </div>
       </div>
