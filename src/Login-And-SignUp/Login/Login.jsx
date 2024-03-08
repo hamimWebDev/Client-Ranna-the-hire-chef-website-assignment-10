@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const { signInUser, signInWithGoogle, signInWithGithub } =
+    useContext(AuthContext);
+  const Navigate = useNavigate();
+  const signInGoogle = () => {
+    signInWithGoogle(() => {}).then((result) => {
+      const gUser = result.user;
+      Navigate("/");
+    });
+  };
+  const signInGithub = () => {
+    signInWithGithub(() => {}).then((result) => {
+      const gitUser = result.user;
+      Navigate("/");
+    });
+  };
 
   const [showPassword, setShowPassword] = useState(false);
   const handleChange = (e) => {
@@ -24,15 +40,23 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = formData;
-    console.log(email, password);
-    setFormData({
-      email: "",
-      password: "",
-    });
+    signInUser(email, password)
+      .then((result) => {
+        const logUser = result.user;
+        alert("Sign In Successful");
+        setFormData({
+          email: "",
+          password: "",
+        });
+        Navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 pt-24">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Log in
@@ -127,13 +151,23 @@ function Login() {
             </div>
           </form>
           <div className="mt-6 flex justify-center">
-            <button className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black">
+            <button onClick={signInGoogle} className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black">
               <img
                 className="w-8 mr-2"
                 src="https://cdn-icons-png.freepik.com/256/281/281764.png?ga=GA1.1.540724036.1706111289&semt=ais"
                 alt=""
               />
               <h4 className="text-lg text-gray-600">Continue with Google</h4>
+            </button>
+          </div>
+          <div className="mt-6 flex justify-center">
+            <button onClick={signInGithub} className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black">
+              <img
+                className="w-8 mr-2"
+                src="https://cdn-icons-png.freepik.com/256/2111/2111432.png?ga=GA1.2.540724036.1706111289&"
+                alt=""
+              />
+              <h4 className="text-lg text-gray-600">Continue with GitHub</h4>
             </button>
           </div>
         </div>

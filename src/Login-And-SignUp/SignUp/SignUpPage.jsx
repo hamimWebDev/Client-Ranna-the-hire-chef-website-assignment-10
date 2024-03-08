@@ -1,8 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 function SignUpPage() {
+  const Navigate = useNavigate();
+  const { createUser, user, logOut, signInWithGoogle, signInWithGithub } =
+    useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut(() => {});
+  };
+  const signInGoogle = () => {
+    signInWithGoogle(() => {}).then((result) => {
+      const gUser = result.user;
+      Navigate("/");
+    });
+  };
+  const signInGithub = () => {
+    signInWithGithub(() => {}).then((result) => {
+      const gitUser = result.user;
+      Navigate("/");
+    });
+  };
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -42,20 +63,26 @@ function SignUpPage() {
       alert("Confirm Password do not match");
       return;
     }
-    console.log(firstName, lastName, email, password, confirmPassword);
-
-    console.log(typeof email);
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
+    createUser(email, password)
+      .then((result) => {
+        const signUser = result.user;
+        alert("Sign Up Successful");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+        Navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 pt-24">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Sign up
@@ -202,12 +229,21 @@ function SignUpPage() {
                 <h1 className="text-base font-medium">
                   Already you have an account?
                 </h1>
-                <Link
-                  to="/login"
-                  className="text-red-800 font-semibold ml-2 hover:text-blue-400"
-                >
-                  Log in
-                </Link>
+                {user ? (
+                  <Link
+                    onClick={handleLogOut}
+                    className="text-red-800 font-semibold ml-2 hover:text-blue-400"
+                  >
+                    LogOut
+                  </Link>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="text-red-800 font-semibold ml-2 hover:text-blue-400"
+                  >
+                    Log in
+                  </Link>
+                )}
               </div>
             </div>
             <div className="grid grid-cols-3 text-black items-center">
@@ -218,13 +254,29 @@ function SignUpPage() {
             </div>
           </form>
           <div className="mt-6 flex justify-center">
-            <button className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black">
+            <button
+              onClick={signInGoogle}
+              className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black"
+            >
               <img
                 className="w-8 mr-2"
                 src="https://cdn-icons-png.freepik.com/256/281/281764.png?ga=GA1.1.540724036.1706111289&semt=ais"
                 alt=""
               />
               <h4 className="text-lg text-gray-600">Continue with Google</h4>
+            </button>
+          </div>
+          <div className="mt-6 flex justify-center">
+            <button
+              onClick={signInGithub}
+              className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black"
+            >
+              <img
+                className="w-8 mr-2"
+                src="https://cdn-icons-png.freepik.com/256/2111/2111432.png?ga=GA1.2.540724036.1706111289&"
+                alt=""
+              />
+              <h4 className="text-lg text-gray-600">Continue with GitHub</h4>
             </button>
           </div>
         </div>

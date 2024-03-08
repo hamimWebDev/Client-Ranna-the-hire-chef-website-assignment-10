@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../../providers/AuthProviders";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut(() => {});
+  };
 
   return (
     <div>
@@ -52,43 +56,105 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <div className="hidden md:block text-end text-white">
-            <button className="text-2xl p-2 bg-red-600 font-semibold rounded-md mr-3 hover:bg-blue-500">
-              Login
-            </button>
-            <button className="text-2xl p-2 bg-blue-500 hover:bg-red-500 font-semibold rounded-md">
-              Register
-            </button>
+          <div className="hidden md:flex justify-end items-center text-end text-white">
+            {user ? (
+              <Link onClick={handleLogOut}>
+                <button className="text-2xl p-2 bg-red-600 font-semibold rounded-md mr-3 hover:bg-blue-500">
+                  LogOut
+                </button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <button className="text-2xl p-2 bg-red-600 font-semibold rounded-md mr-3 hover:bg-blue-500">
+                  Login
+                </button>
+              </Link>
+            )}
+            <Link to="/SignUp">
+              <button className="text-2xl p-2 bg-blue-500 hover:bg-red-500 font-semibold rounded-md">
+                Sign Up
+              </button>
+            </Link>
+            <div className="ml-3">
+              {user && (
+                <div>
+                  {user.photoURL ? (
+                    <div>
+                      <img
+                        className="h-11 rounded-full"
+                        src={user.photoURL}
+                        alt=""
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <img
+                        className="h-11 rounded-full"
+                        src="https://cdn-icons-png.freepik.com/256/720/720236.png?ga=GA1.2.540724036.1706111289&"
+                        alt=""
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
           <div className=" text-end col-span-2 md:hidden">
-            <button
-              className="text-white focus:outline-none"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+            <div className="flex justify-end items-center">
+              <div>
+                <div className="ml-3">
+                  {user && (
+                    <div>
+                      {user.photoURL ? (
+                        <div>
+                          <img
+                            className="h-9 rounded-full"
+                            src={user.photoURL}
+                            alt=""
+                          />
+                        </div>
+                      ) : (
+                        <div>
+                          <img
+                            className="h-9 rounded-full"
+                            src="https://cdn-icons-png.freepik.com/256/720/720236.png?ga=GA1.2.540724036.1706111289&"
+                            alt=""
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <button
+                className="text-white focus:outline-none ml-3"
+                onClick={() => setIsOpen(!isOpen)}
               >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16m-7 6h7"
-                  />
-                )}
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {isOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16m-7 6h7"
+                    />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
         {isOpen && (
@@ -117,12 +183,27 @@ function Navbar() {
               </li>
             </ul>
             <div className="text-end">
-              <button className="text-xl p-2 bg-red-600 font-semibold rounded-md mr-3 hover:bg-blue-500">
-                Login
-              </button>
-              <button className="text-xl p-2 bg-blue-500 hover:bg-red-500 font-semibold rounded-md">
-                Register
-              </button>
+              {user ? (
+                <Link>
+                  <button
+                    onClick={logOut}
+                    className="text-xl p-2 bg-red-600 font-semibold rounded-md mr-3 hover:bg-blue-500"
+                  >
+                    LogOut
+                  </button>
+                </Link>
+              ) : (
+                <Link to="/Login">
+                  <button className="text-xl p-2 bg-red-600 font-semibold rounded-md mr-3 hover:bg-blue-500">
+                    Login
+                  </button>
+                </Link>
+              )}
+              <Link to="/SignUp">
+                <button className="text-xl p-2 bg-blue-500 hover:bg-red-500 font-semibold rounded-md">
+                  Sign Up
+                </button>
+              </Link>
             </div>
           </div>
         )}

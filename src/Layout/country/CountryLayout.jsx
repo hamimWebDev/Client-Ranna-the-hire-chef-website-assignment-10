@@ -4,7 +4,6 @@ import Chef from "../../Components/Chef/Chef";
 
 const CountryLayout = () => {
   const chefs = useLoaderData();
-  console.log(chefs);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 w-[80%] mx-auto p-24">
       {chefs.map((chef) => (

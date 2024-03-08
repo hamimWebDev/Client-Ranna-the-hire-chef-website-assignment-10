@@ -10,6 +10,12 @@ import AllChef from "./Components/All_Chef/AllChef";
 import AllRecipes from "./Components/Recipes/AllRecipes";
 import ChefLayout from "./Layout/Chef/ChefLayout";
 import Recipe from "./Components/Recipes/Recipe";
+import SignUpALoginLayout from "./Layout/SignUp-And-Login-Layout/SignUpALoginLayout";
+import SignUpPage from "./Login-And-SignUp/SignUp/SignUpPage";
+import Login from "./Login-And-SignUp/Login/Login";
+import AuthProviders from "./providers/AuthProviders";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import About from "./Components/About/About";
 
 const router = createBrowserRouter([
   {
@@ -36,11 +42,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/recipes",
-        element: <AllRecipes></AllRecipes>,
+        element: (
+          <PrivateRoute>
+            <AllRecipes></AllRecipes>
+          </PrivateRoute>
+        ),
         loader: () =>
           fetch(
             "https://server-ranna-the-hire-chef-website-assignment-10.vercel.app/recipes"
           ),
+      },
+      {
+        path: "about",
+        element: <About></About>
       },
       {
         path: "country",
@@ -58,7 +72,11 @@ const router = createBrowserRouter([
       },
       {
         path: "chef",
-        element: <ChefLayout></ChefLayout>,
+        element: (
+          <PrivateRoute>
+            <ChefLayout></ChefLayout>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://server-ranna-the-hire-chef-website-assignment-10.vercel.app/chef/${params.id}`
@@ -72,10 +90,26 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/",
+    element: <SignUpALoginLayout></SignUpALoginLayout>,
+    children: [
+      {
+        path: "/SignUp",
+        element: <SignUpPage></SignUpPage>,
+      },
+      {
+        path: "/Login",
+        element: <Login></Login>,
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProviders>
+      <RouterProvider router={router} />
+    </AuthProviders>
   </React.StrictMode>
 );

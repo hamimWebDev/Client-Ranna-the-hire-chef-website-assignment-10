@@ -5,7 +5,6 @@ import Marquee from "react-fast-marquee";
 
 const AllCountry = () => {
   const allCountry = useLoaderData();
-  console.log(allCountry);
   return (
     <div className="flex">
       <Marquee>

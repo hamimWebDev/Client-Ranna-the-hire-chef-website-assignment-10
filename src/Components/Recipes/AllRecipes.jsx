@@ -4,7 +4,6 @@ import AllRecipe from "./AllRecipe";
 
 const AllRecipes = () => {
   const recipes = useLoaderData();
-  console.log(recipes);
   return (
     <div className="pt-24 grid grid-cols-1 lg:grid-cols-3 gap-4 w-[95%] mx-auto">
       {recipes.map((recipe) => (

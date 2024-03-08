@@ -6,7 +6,6 @@ const ChefLayout = () => {
   const chefARecipe = useLoaderData();
   const chef = chefARecipe[0];
   const recipes = chefARecipe[1];
-  console.log(recipes, chef);
   const { Chef_Name, Chef_Picture, Likes, Years_experience } = chef;
   return (
     <div className="pt-24">
