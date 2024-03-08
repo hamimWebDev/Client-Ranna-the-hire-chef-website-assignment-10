@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import useTitle from "../../Hooks/useTitle";
 
 function SignUpPage() {
+  useTitle("SignUp")
   const Navigate = useNavigate();
   const { createUser, user, logOut, signInWithGoogle, signInWithGithub } =
     useContext(AuthContext);

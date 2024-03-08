@@ -1,12 +1,14 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import Recipe from "../../Components/Recipes/Recipe";
+import useTitle from "../../Hooks/useTitle";
 
 const ChefLayout = () => {
   const chefARecipe = useLoaderData();
   const chef = chefARecipe[0];
   const recipes = chefARecipe[1];
   const { Chef_Name, Chef_Picture, Likes, Years_experience } = chef;
+  useTitle(Chef_Name);
   return (
     <div className="pt-24">
       <div className="grid grid-cols-1 lg:grid-cols-2 w-[95%] mx-auto">

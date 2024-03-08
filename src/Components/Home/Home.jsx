@@ -4,8 +4,10 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import { SiCodechef } from "react-icons/si";
 import AllCountry from "../All_Country/AllCountry";
 import { Outlet } from "react-router-dom";
+import useTitle from "../../Hooks/useTitle";
 
 const Home = () => {
+  useTitle("Home")
   return (
     <div className="pt-20">
       <ImageSlider></ImageSlider>

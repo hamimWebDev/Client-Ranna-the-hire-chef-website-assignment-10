@@ -1,8 +1,10 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import useTitle from "../../Hooks/useTitle";
 
 const Chef = ({ chef }) => {
+  useTitle("Chef")
   const { id, Chef_Name, Chef_Picture, Years_experience, Likes } = chef;
   return (
     <div>

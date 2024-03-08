@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
+import useTitle from "../../Hooks/useTitle";
 
 function Login() {
+  useTitle("Login");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -151,7 +153,10 @@ function Login() {
             </div>
           </form>
           <div className="mt-6 flex justify-center">
-            <button onClick={signInGoogle} className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black">
+            <button
+              onClick={signInGoogle}
+              className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black"
+            >
               <img
                 className="w-8 mr-2"
                 src="https://cdn-icons-png.freepik.com/256/281/281764.png?ga=GA1.1.540724036.1706111289&semt=ais"
@@ -161,7 +166,10 @@ function Login() {
             </button>
           </div>
           <div className="mt-6 flex justify-center">
-            <button onClick={signInGithub} className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black">
+            <button
+              onClick={signInGithub}
+              className="bg-white text-black flex justify-center items-center hover:bg-slate-200 p-2 w-[100%] border-1 border-black"
+            >
               <img
                 className="w-8 mr-2"
                 src="https://cdn-icons-png.freepik.com/256/2111/2111432.png?ga=GA1.2.540724036.1706111289&"
