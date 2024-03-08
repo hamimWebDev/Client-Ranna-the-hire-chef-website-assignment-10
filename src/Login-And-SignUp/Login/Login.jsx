@@ -134,7 +134,7 @@ function Login() {
               </div>
 
               <div className="text-black text-center flex items-center justify-center mt-2">
-                <h1 className="text-base font-medium">New to Ema-Jhon?</h1>
+                <h1 className="text-base font-medium">New to this Website?</h1>
                 <Link
                   to="/signup"
                   className="text-red-800 font-semibold ml-2 hover:text-blue-400"
