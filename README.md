@@ -35,4 +35,4 @@ You can visit the live version of the website [here](https://ranna-firebase-auth
 
 ## How to Use
 
-[Search your country and search your country Chef.Order the shape recipe]
+[Choose your country and search your country Chef.Order the shape recipe]
